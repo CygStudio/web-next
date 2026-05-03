@@ -24,6 +24,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: github-pages
+    env:
+      NEXT_PUBLIC_ASSET_BASE_URL: ${{ vars.NEXT_PUBLIC_ASSET_BASE_URL }}
+      NEXT_PUBLIC_HERO_ANIMATION_IFRAME_URL: ${{ vars.NEXT_PUBLIC_HERO_ANIMATION_IFRAME_URL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
