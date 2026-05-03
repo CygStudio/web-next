@@ -5,6 +5,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import { noop } from 'lodash-es'
 import StrokeText from '@/components/StrokeText'
+import { getAssetUrl } from '@/lib/asset-url'
 import { useEffect, useState } from 'react'
 import { Masonry, ResponsiveMasonry } from '@/components/Masonry'
 import { Lightbox } from '@/components/Lightbox'
@@ -22,7 +23,7 @@ export default function StandingSign() {
   const [items, setItems] = useState<Item[]>([])
   useEffect(() => {
     const fetchData = async () => {
-      const items: Item[] = await fetch('https://cygasset.sid.tw/travel')
+      const items: Item[] = await fetch(getAssetUrl('travel'))
         .then(res => res.json())
         .catch(() => [])
       setItems(items)
@@ -92,13 +93,11 @@ const MasonryItem = ({
   className?: string
   imgClassName?: string
 }) => {
-  const ASSET_HOST = 'https://cygasset.sid.tw/'
-
   return (
     <div key={index} className={clsx('relative cursor-pointer', className)} onClick={onClick}>
       <Image
         className={clsx(imgClassName)}
-        src={ASSET_HOST + item.image}
+        src={getAssetUrl(item.image)}
         width={300}
         height={300}
         alt=""

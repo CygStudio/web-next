@@ -1,8 +1,9 @@
 import React from 'react'
+import { getAssetUrl } from '@/lib/asset-url'
 import VideoCarousel from './components/VideoCarousel'
 
 export default async function FilmPage() {
-  const items = await fetch('https://cygasset.sid.tw/video')
+  const items = await fetch(getAssetUrl('video'))
     .then(res => res.json())
     .catch(() => [])
   

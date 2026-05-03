@@ -2,6 +2,7 @@
 
 import { MessageCard, type MarqueeItem } from '@/components/MessageCard'
 import { Masonry, ResponsiveMasonry } from '@/components/Masonry'
+import { getAssetUrl } from '@/lib/asset-url'
 import { useEffect, useState } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
@@ -44,7 +45,7 @@ export default function MessageMasonry() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const items = await fetch('https://cygasset.sid.tw/message')
+      const items = await fetch(getAssetUrl('message'))
         .then(res => res.json())
         .catch(() => null)
 
@@ -52,8 +53,6 @@ export default function MessageMasonry() {
     }
     fetchData()
   }, [])
-
-  const ASSET_HOST = 'https://cygasset.sid.tw/'
 
   return (
     <>

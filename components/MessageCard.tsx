@@ -5,6 +5,7 @@ import Image from 'next/image'
 import StrokeText from '@/components/StrokeText'
 import clsx from 'clsx'
 import { useReadListStore } from '@/lib/store'
+import { getAssetUrl } from '@/lib/asset-url'
 import { noop } from 'lodash-es'
 
 export interface MarqueeItem {
@@ -20,8 +21,6 @@ type Props = {
   onCardClick?: () => void
   imgClassName?: string
 }
-
-const ASSET_HOST = 'https://cygasset.sid.tw/'
 
 export function MessageCard({ item, onCardClick = noop, imgClassName }: Props) {
   const { toggleReadItem, isRead } = useReadListStore()
@@ -55,7 +54,7 @@ export function MessageCard({ item, onCardClick = noop, imgClassName }: Props) {
         {/* 圖片 */}
         {item.image && (
           <div className={clsx('relative mt-2 cursor-pointer', readClass, imgClassName)}>
-            <img src={ASSET_HOST + item.image} alt="Message Image" className="object-contain object-center max-w-full max-h-full" />
+            <img src={getAssetUrl(item.image)} alt="Message Image" className="object-contain object-center max-w-full max-h-full" />
           </div>
         )}
       </div>
@@ -71,7 +70,7 @@ export function MessageCard({ item, onCardClick = noop, imgClassName }: Props) {
 
         {/* 頭像 */}
         <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center mr-3 overflow-hidden shrink-0">
-          <Image src={ASSET_HOST + item.avatar} alt={item.name} width={48} height={48} />
+          <Image src={getAssetUrl(item.avatar)} alt={item.name} width={48} height={48} />
         </div>
 
         {/* 用戶名 */}

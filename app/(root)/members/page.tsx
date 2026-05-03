@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Link from 'next/link'
+import { getAssetUrl } from '@/lib/asset-url'
 import { ProjectMembers } from './components/ProjectMembers'
 import VideoSection from './components/VideoSection'
 
@@ -17,7 +18,7 @@ type MembersData = {
 }
 
 export default async function MembersPage() {
-  const items: MembersData = await fetch('https://cygasset.sid.tw/members')
+  const items: MembersData = await fetch(getAssetUrl('members'))
     .then(res => res.json())
     .catch(() => { return { staffList: [], memberList: [] } })
 
@@ -45,13 +46,11 @@ export default async function MembersPage() {
 }
 
 const StaffCard = ({ item }: { item: Item }) => {
-  const ASSET_HOST = 'https://cygasset.sid.tw/'
-
   return (
     <Card className="flex flex-col items-center text-center bg-gray-200">
       <Link href={item.link} target="_blank" rel="noopener noreferrer" className="block mt-6">
         <Avatar className="w-32 h-32 border-4 border-white shadow-lg">
-          <AvatarImage src={ASSET_HOST + item.img} alt={item.name} />
+          <AvatarImage src={getAssetUrl(item.img)} alt={item.name} />
           <AvatarFallback>{item.name.charAt(0)}</AvatarFallback>
         </Avatar>
       </Link>

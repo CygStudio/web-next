@@ -1,8 +1,9 @@
 import StrokeText from '@/components/StrokeText'
 import { VideoSection, type Common } from '@/components/VideoSection'
+import { getAssetUrl } from '@/lib/asset-url'
 
 export default async function VideoSectionList() {
-  const items: Common = await fetch('https://cygasset.sid.tw/common')
+  const items: Common = await fetch(getAssetUrl('common'))
     .then(res => res.json())
     .catch(() => {
       return { videoList: [] }

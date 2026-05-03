@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { Masonry, ResponsiveMasonry } from '@/components/Masonry'
+import { getAssetUrl } from '@/lib/asset-url'
 import { useEffect, useState } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
@@ -45,7 +46,7 @@ export default function ActivitiesMasonry() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const items: Item[] = await fetch('https://cygasset.sid.tw/activities')
+      const items: Item[] = await fetch(getAssetUrl('activities'))
         .then(res => res.json())
         .catch(() => [])
 
@@ -95,8 +96,6 @@ export default function ActivitiesMasonry() {
     return null
   }
 
-  const ASSET_HOST = 'https://cygasset.sid.tw/'
-
   return (
     <ResponsiveMasonry
       columnsCountBreakPoints={{
@@ -117,10 +116,8 @@ export default function ActivitiesMasonry() {
 }
 
 const Card = ({ item }: { item: Node }) => {
-  const ASSET_HOST = 'https://cygasset.sid.tw/'
-
   const Image = () => (
-    <img src={ASSET_HOST + item.content} alt={item.group} className="w-full h-auto" />
+    <img src={getAssetUrl(item.content)} alt={item.group} className="w-full h-auto" />
   )
   const YT = () => (
     <div className="iframe-container" dangerouslySetInnerHTML={{ __html: item.content }} />

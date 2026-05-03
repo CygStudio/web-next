@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide, type SwiperProps } from 'swiper/react'
 import { Navigation, Pagination, EffectCards, Mousewheel } from 'swiper/modules'
 import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
+import { getAssetUrl } from '@/lib/asset-url'
 
 import 'swiper/css'
 import 'swiper/css/effect-cards'
@@ -40,13 +41,12 @@ const swiperParameters: SwiperProps = {
   },
 }
 
-const ASSET_HOST = 'https://cygasset.sid.tw/message/poker'
 const PokerSwiper = () => {
   const [items, setItems] = useState<string[]>([])
 
   useEffect(() => {
     const fetchData = async () => {
-      const items: string[] = await fetch('https://cygasset.sid.tw/message/poker')
+      const items: string[] = await fetch(getAssetUrl('message/poker'))
         .then(res => res.json())
         .catch(() => [])
 
@@ -61,7 +61,7 @@ const PokerSwiper = () => {
         <SwiperSlide key={img}>
           <div className="w-full h-full aspect-[784/1024] rounded-3xl">
             <Image
-              src={`${ASSET_HOST}/${img}`}
+              src={getAssetUrl(`message/poker/${img}`)}
               alt="youtube"
               width={784}
               height={1024}

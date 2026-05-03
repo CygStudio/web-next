@@ -1,8 +1,9 @@
 import InfiniteMarquee from '@/components/InfiniteMarquee'
 import StrokeText from '@/components/StrokeText'
+import { getAssetUrl } from '@/lib/asset-url'
 
 export default async function Home() {
-  const items = await fetch('https://cygasset.sid.tw/message')
+  const items = await fetch(getAssetUrl('message'))
     .then(res => res.json())
     .catch(() => null)
 
