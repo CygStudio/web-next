@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import Link from 'next/link'
 import { getAssetUrl } from '@/lib/asset-url'
-import { ProjectMembers } from './components/ProjectMembers'
+// import { ProjectMembers } from './components/ProjectMembers'
 import VideoSection from './components/VideoSection'
 
 type Item = {
@@ -24,7 +24,7 @@ export default async function MembersPage() {
 
   return (
     <section className="container mx-auto">
-      <ProjectMembers />
+      {/* <ProjectMembers /> */}
 
       <VideoSection />
 
