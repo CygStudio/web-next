@@ -10,9 +10,11 @@ import GoTop from '@/components/GoTop'
 import { ClientHooks } from '@/components/ClientHooks'
 import clsx from 'clsx'
 
+const currentYear = new Date().getFullYear()
+
 export const metadata: Metadata = {
-  title: '2025 熙歌工作室慶生網頁',
-  description: '熙歌工作室 2025 隆重鉅獻，歡迎加入婚叫們溫暖的大家庭',
+  title: `${currentYear} 熙歌工作室慶生網頁`,
+  description: `熙歌工作室 ${currentYear} 隆重鉅獻，歡迎加入婚叫們溫暖的大家庭`,
   icons: {
     icon: '/images/icon.webp'
   },

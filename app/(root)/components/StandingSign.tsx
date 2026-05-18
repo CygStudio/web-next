@@ -40,10 +40,10 @@ export default function StandingSign() {
         </h2>
 
         <Image
-          src="https://www.xtremedeepfieldproject.com/images/%E7%86%99%E9%81%8A%E8%A8%98%E5%B0%81%E9%9D%A2.jpg"
+          src="/images/熙遊記V3.webp"
           alt=""
-          width={1920}
-          height={1080}
+          width={2010}
+          height={1114}
           className="block w-full rounded-lg"
         />
       </div>
